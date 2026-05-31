@@ -1,0 +1,303 @@
+TML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Jack hermoso ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffb3c1 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #4a4a4a;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff4d6d;
+            font-size: 3.2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Música */
+        .music-player {
+            background: #fff0f3;
+            padding: 12px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .music-player span {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #ff4d6d;
+        }
+        audio {
+            height: 35px;
+            width: 100%;
+        }
+
+        /* Marcos de Fotos Estilo Polaroid */
+        .photo-frame {
+            margin: 25px auto;
+            width: 90%;
+            max-width: 340px;
+            border: 12px solid white;
+            border-bottom: 45px solid white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+            transition: transform 0.3s;
+            position: relative;
+            background: white;
+        }
+        .frame-1 { transform: rotate(-2deg); }
+        .frame-2 { transform: rotate(2deg); }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.04);
+            z-index: 5;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+        .photo-caption {
+            font-family: 'Dancing Script', cursive;
+            position: absolute;
+            bottom: -38px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #ff4d6d;
+            font-weight: bold;
+        }
+
+        /* Botón Sorpresa */
+        .btn-love {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+            margin: 15px 0;
+        }
+        .btn-love:hover {
+            background: #ff758f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+        }
+
+        /* Contenedor Sorpresa Oculto */
+        .sorpresa-section {
+            display: none;
+            animation: fadeIn 1.2s ease-in-out forwards;
+        }
+
+        /* Carta Coqueta */
+        .carta-bonita {
+            margin-top: 25px;
+            padding: 20px;
+            border-left: 4px dashed #ff4d6d;
+            background: #fff0f3;
+            border-radius: 10px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        /* Frase Siempre Estaré Para Tii */
+        .frase-final {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff4d6d;
+            margin: 30px 0 15px 0;
+            font-weight: bold;
+        }
+
+        /* Animación Corazón que se Prende desde el Centro */
+        .heart-glow {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 30px auto;
+            animation: pulseGlow 1.2s infinite alternate ease-in-out;
+        }
+        .heart-glow::before,
+        .heart-glow::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 52px;
+            height: 80px;
+            border-radius: 50px 50px 0 0;
+            background: #ff1a43;
+            box-shadow: 0 0 15px #ff1a43, 0 0 40px #ff4d6d;
+        }
+        .heart-glow::before {
+            left: 40px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .heart-glow::after {
+            left: -12px;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        /* Snoopy Animado Tierno */
+        .snoopy-frame {
+            margin: 25px auto;
+            width: 70%;
+            max-width: 250px;
+            transition: transform 0.3s;
+            animation: bounceTierno 2s infinite ease-in-out;
+        }
+        .snoopy-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.4); opacity: 0.3; filter: drop-shadow(0 0 2px #ff1a43); }
+            100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 25px #ff4d6d); }
+        }
+
+        @keyframes bounceTierno {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Para mi flaquito hermoso... ❤️</h1>
+    </header>
+
+    <div class="container">
+        <!-- REPRODUCTOR CON COQUETA DE GRUPO FRONTERA -->
+        <div class="music-player">
+            <span>🎵 Nuestra canción coqueta (Grupo Frontera):</span>
+            <audio controls loop>
+                <source src="https://raw.githubusercontent.com/Anand-Chowdharia/asl-songs/main/audio/no-se-va.mp3" type="audio/mpeg">
+                Tu navegador no soporta audio.
+            </audio>
+        </div>
+
+        <!-- FOTO 1: ABRAZO ANIMADO -->
+        <div class="photo-frame frame-1">
+            <img src="image_f52e39.png" alt="Abrazo Hermoso">
+            <div class="photo-caption">Me encantas completo ✨</div>
+        </div>
+
+        <!-- FOTO 2: CORAZÓN EN EL CABELLO -->
+        <div class="photo-frame frame-2">
+            <img src="image_f52e01.png" alt="Corazón Cabello">
+            <div class="photo-caption">Mi momento favorito eres tú 💞</div>
+        </div>
+
+        <!-- BOTÓN ENTRADA -->
+        <p>Tengo una sorpresa muy bonita para ti...</p>
+        <button class="btn-love" onclick="mostrarTodo()">Presiona aquí mi amor 💖</button>
+
+        <!-- SECCIÓN SORPRESA OCULTA -->
+        <div id="sorpresa" class="sorpresa-section">
+            
+            <!-- LA CARTA -->
+            <div class="carta-bonita">
+                <p><strong>¡Hola, mi amor hermoso! 😍</strong></p>
+                <p>Hice esta página solo para recordarte lo muchísimo que me encantas. No sé qué tienes, pero cada vez que hablo contigo o me sonríes, me dejas flotando por completo en las nubes. ¡Es imposible no derretirse contigo!</p>
+                <p>Eres mi persona favorita en todo el planeta. Me fascina tu forma de ser, cómo me haces sentir y lo lindo que es compartir mis días contigo. Gracias por estar en mi vida y por hacerme tan feliz.</p>
+                <p>Te amo con todo mi corazón, hoy, mañana y para siempre. Eres mi flaquito consentido. 🌹✨</p>
+            </div>
+
+            <!-- FRASE EMOTIVA -->
+            <div class="frase-final">Siempre estaré para tii</div>
+
+            <!-- CORAZÓN QUE SE PRENDE DESDE EL CENTRO -->
+            <div class="heart-glow"></div>
+
+            <!-- FOTO 3: SNOOPY ANIMADO TIERNO -->
+            <div class="snoopy-frame">
+                <img src="image_f52a7d.png" alt="Snoopy Tierno">
+                <p style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 10px; font-weight: bold; color: #ff4d6d;">¡Te amo muchísimo! 🐶❤️</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function mostrarTodo() {
+            const sorpresa = document.getElementById('sorpresa');
+            sorpresa.style.display = 'block';
+
+            var duration = 4 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+              confetti({
+                particleCount: 4,
+                angle: 60,
+                spread: 60,
+                origin: { x: 0 },
+                colors: ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffffff']
+              });
+              confetti({
+                particleCount: 4,
+                angle: 120,
+                spread: 60,
+                origin: { x: 1 },
+                colors: ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffffff']
+              });
+
+              if (Date.now() < end) {
+                requestAnimationFrame(frame);
+              }
+            }());
+            
+            setTimeout(() => {
+                sorpresa.scrollIntoView({ behavior: 'smooth' });
+            }, 200);
+        }
+    </script>
+</body>
+</html>
