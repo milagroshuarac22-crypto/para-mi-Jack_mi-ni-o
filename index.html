@@ -64,45 +64,18 @@ HTML
             width: 100%;
         }
 
-        /* CORAZÓN GIGANTE AFUERA (Se ilumina desde el centro hacia afuera) */
-        .heart-giant-container {
-            margin: 20px auto 40px auto;
-            width: 130px;
-            height: 130px;
+        /* CORAZÓN GIGANTE QUE ALUMBRA DESDE EL CENTRO HACIA AFUERA */
+        .heart-container {
+            font-size: 90px;
+            margin: 10px 0 20px 0;
+            display: inline-block;
             position: relative;
-        }
-        .heart-giant {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: pulseGlowGiant 1.5s infinite ease-in-out;
-        }
-        .heart-giant::before,
-        .heart-giant::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 80px;
-            height: 130px;
-            border-radius: 80px 80px 0 0;
-            background: #ff1a43;
-            /* Efecto de luz expandiéndose desde el centro hacia afuera */
-            box-shadow: 0 0 20px #ff1a43, 0 0 45px #ff4d6d, 0 0 70px #ff85a1;
-        }
-        .heart-giant::before {
-            left: 65px;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-        }
-        .heart-giant::after {
-            left: -15px;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
+            animation: alumbrarCentro 1.5s infinite ease-in-out alternate;
         }
 
         /* Marcos de Fotos Estilo Polaroid */
         .photo-frame {
-            margin: 25px auto;
+            margin: 35px auto;
             width: 90%;
             max-width: 340px;
             border: 12px solid white;
@@ -149,7 +122,7 @@ HTML
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
             transition: all 0.3s ease;
-            margin: 15px 0;
+            margin: 20px 0 10px 0;
         }
         .btn-love:hover {
             background: #ff758f;
@@ -163,7 +136,7 @@ HTML
             animation: fadeIn 1.2s ease-in-out forwards;
         }
 
-        /* Carta Coqueta */
+        /* Carta Bonita */
         .carta-bonita {
             margin-top: 25px;
             padding: 20px;
@@ -181,36 +154,6 @@ HTML
             color: #ff4d6d;
             margin: 30px 0 15px 0;
             font-weight: bold;
-        }
-
-        /* Animación Corazón Oculto Abajo */
-        .heart-glow {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            margin: 30px auto;
-            animation: pulseGlow 1.2s infinite alternate ease-in-out;
-        }
-        .heart-glow::before,
-        .heart-glow::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 52px;
-            height: 80px;
-            border-radius: 50px 50px 0 0;
-            background: #ff1a43;
-            box-shadow: 0 0 15px #ff1a43, 0 0 40px #ff4d6d;
-        }
-        .heart-glow::before {
-            left: 40px;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-        }
-        .heart-glow::after {
-            left: -12px;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
         }
 
         /* Snoopy Animado Tierno */
@@ -232,15 +175,18 @@ HTML
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Animación del Corazón Gigante Principal */
-        @keyframes pulseGlowGiant {
-            0% { transform: scale(0.85); opacity: 0.6; filter: drop-shadow(0 0 5px #ff1a43); }
-            100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 35px #ff4d6d); }
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(0.4); opacity: 0.3; filter: drop-shadow(0 0 2px #ff1a43); }
-            100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 25px #ff4d6d); }
+        /* ANIMACIÓN: El brillo neón se expande con fuerza desde el centro del corazón hacia afuera */
+        @keyframes alumbrarCentro {
+            0% { 
+                transform: scale(0.9); 
+                filter: drop-shadow(0 0 5px rgba(255, 26, 67, 0.6));
+                opacity: 0.8;
+            }
+            100% { 
+                transform: scale(1.15); 
+                filter: drop-shadow(0 0 35px #ff1a43) drop-shadow(0 0 60px #ff4d6d);
+                opacity: 1;
+            }
         }
 
         @keyframes bounceTierno {
@@ -256,18 +202,18 @@ HTML
     </header>
 
     <div class="container">
-        <!-- REPRODUCTOR CON COQUETA DE GRUPO FRONTERA REAL -->
+        <!-- CANCIÓN ACTUALIZADA: AMAPOLAS DE LEO RIZZI -->
         <div class="music-player">
-            <span>🎵 Nuestra canción coqueta (Grupo Frontera):</span>
+            <span>🎵 Amapolas - Leo Rizzi ❤️</span>
             <audio controls loop id="miAudio">
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
                 Tu navegador no soporta audio.
             </audio>
         </div>
 
-        <!-- NUEVO: CORAZÓN GIGANTE QUE SE ILUMINA AFUERA -->
-        <div class="heart-giant-container">
-            <div class="heart-giant"></div>
+        <!-- EL NUEVO CORAZÓN REAL QUE SE ILUMINA FUERTE HACIA AFUERA -->
+        <div>
+            <div class="heart-container">❤️</div>
         </div>
 
         <!-- FOTO 1: ABRAZO ANIMADO -->
@@ -300,8 +246,8 @@ HTML
             <!-- FRASE EMOTIVA -->
             <div class="frase-final">Siempre estaré para tii</div>
 
-            <!-- CORAZÓN QUE SE PRENDE DESDE EL CENTRO ABAJO -->
-            <div class="heart-glow"></div>
+            <!-- OTRO CORAZÓN BRILLANTE ABAJO -->
+            <div style="font-size: 50px; margin: 20px 0; animation: alumbrarCentro 1.2s infinite alternate;">❤️</div>
 
             <!-- FOTO 3: SNOOPY ANIMADO TIERNO -->
             <div class="snoopy-frame">
@@ -317,9 +263,9 @@ HTML
             const sorpresa = document.getElementById('sorpresa');
             sorpresa.style.display = 'block';
 
-            // Activar la canción al dar clic
+            // Arrancar Amapolas al dar clic
             const audio = document.getElementById('miAudio');
-            audio.play().catch(error => console.log("Audio play manejado correctamente."));
+            audio.play().catch(error => console.log("Audio listo."));
 
             var duration = 4 * 1000;
             var end = Date.now() + duration;
